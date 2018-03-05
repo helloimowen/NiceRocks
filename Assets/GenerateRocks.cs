@@ -27,11 +27,11 @@ public class GenerateRocks : MonoBehaviour {
 
         //Random RandomSize = new Random();
 
-        float Width = (Random.value * 300) * 0.001F;
-        float Height = (Random.value * 700) * 0.001F;
-        float Length = (Random.value * 500) * 0.001F;
+        float Width = (Random.value * 700) * 0.001F;
+        float Height = (Random.value * 800) * 0.001F;
+        float Length = (Random.value * 600) * 0.001F;
 
-        bumpLevel = Mathf.CeilToInt((Random.value * 5));
+        bumpLevel = Mathf.CeilToInt((Random.value * 7));
 
         leftBumpLevel = Mathf.CeilToInt((Random.value * 10) + 5);
         rightBumpLevel =  Mathf.CeilToInt((Random.value * 20) + 5);

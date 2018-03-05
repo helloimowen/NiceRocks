@@ -12,6 +12,8 @@ public class GenerateRocks : MonoBehaviour {
     bool newPoint = false;
 
     int bumpLevel = 0;
+    int leftBumpLevel = 0;
+    int rightBumpLevel = 0; 
 
 
     int count; 
@@ -29,7 +31,10 @@ public class GenerateRocks : MonoBehaviour {
         float Height = (Random.value * 700) * 0.001F;
         float Length = (Random.value * 500) * 0.001F;
 
-        bumpLevel = Mathf.CeilToInt((Random.value * 5)); 
+        bumpLevel = Mathf.CeilToInt((Random.value * 5));
+
+        leftBumpLevel = Mathf.CeilToInt((Random.value * 10) + 5);
+        rightBumpLevel =  Mathf.CeilToInt((Random.value * 20) + 5);
 
 
         transform.localScale += new Vector3(-Width, -Height, -Length); 
@@ -46,7 +51,7 @@ public class GenerateRocks : MonoBehaviour {
 
 
 
-        if (count < 7)
+        if (count < 8)
         {
 
             //while (i < vertices.Length)
@@ -80,10 +85,10 @@ public class GenerateRocks : MonoBehaviour {
                 {
                     modify = Vector3.down * ((Random.value / 10) * vertices[i].y);
 
-                    if (i % bumpLevel * 10 == 0)
+                    if (i % bumpLevel * leftBumpLevel == 0)
                         modify = Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the left!
 
-                    if (i % bumpLevel * 20 == 0)
+                    if (i % bumpLevel * rightBumpLevel == 0)
                         modify = Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the right!!
 
                     History[i] = vertices[i]; 

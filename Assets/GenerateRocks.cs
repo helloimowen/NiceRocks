@@ -11,7 +11,8 @@ public class GenerateRocks : MonoBehaviour {
     Vector3[] History;
     bool newPoint = false;
 
-    int bumpLevel = 0;
+    int bumpLevel = 0; 
+    int verticalBump = 0;
     int leftBumpLevel = 0;
     int rightBumpLevel = 0; 
 
@@ -31,13 +32,15 @@ public class GenerateRocks : MonoBehaviour {
         float Height = (Random.value * 800) * 0.001F;
         float Length = (Random.value * 600) * 0.001F;
 
-        bumpLevel = Mathf.CeilToInt((Random.value * 7));
-
+        verticalBump = Mathf.CeilToInt((Random.value * 7));
         leftBumpLevel = Mathf.CeilToInt((Random.value * 10) + 5);
         rightBumpLevel =  Mathf.CeilToInt((Random.value * 20) + 5);
+        bumpLevel = Mathf.CeilToInt((Random.value * 4) + 1);
 
 
-        transform.localScale += new Vector3(-Width, -Height, -Length); 
+        transform.localScale += new Vector3(-Width, -Height, -Length);
+
+        BumpMaker(1);
 
     }
 
@@ -45,63 +48,69 @@ public class GenerateRocks : MonoBehaviour {
     void Update() {
 
 
+      
+
+    }
+
+    void BumpMaker(int itter)
+    {
         int i = 0;
 
-        count++; 
+        count++;
 
 
 
-        if (count < 8)
+        //if (count < 8)
         {
 
             //while (i < vertices.Length)
             //{
-               // vertices[i] -= Changes[i];
-                //i++;
-           // }
+            // vertices[i] -= Changes[i];
+            //i++;
+            // }
 
             while (i < vertices.Length)
             {
 
-                bool changed = false; 
+                bool changed = false;
                 for (int j = 0; j < i; j++) // magical seam closer
                 {
-                    
+
                     if (History[j] == vertices[i])
                     {
                         vertices[i] = Changes[j];
                         newPoint = true;
-                        changed = true; 
+                        changed = true;
                     }
                     else if (!changed)
                         newPoint = false;
-                    
-                        
+
+
                 }
-                changed = false; 
+                changed = false;
 
 
-                if (i % bumpLevel /*bump number*/ == 0 && !newPoint) // magical peak maker. 
+                if (i % verticalBump /*bump number*/ == 0 && !newPoint) // magical peak maker. 
                 {
                     modify = Vector3.down * ((Random.value / 10) * vertices[i].y);
 
-                    if (i % bumpLevel * leftBumpLevel == 0)
-                        modify = Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the left!
+                    if (i % verticalBump * leftBumpLevel == 0)
+                        modify += Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the left!
 
-                    if (i % bumpLevel * rightBumpLevel == 0)
-                        modify = Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the right!!
+                    if (i % verticalBump * rightBumpLevel == 0)
+                        modify += Vector3.left * ((Random.value / 20) * vertices[i].y); // sometimes goes to the right!!
 
-                    History[i] = vertices[i]; 
-                    vertices[i] += modify;
+                    History[i] = vertices[i];
+                    vertices[i] += modify * bumpLevel;
                     Changes[i] = vertices[i];
-                    newPoint = false; 
+                    newPoint = false;
 
                 }
                 else if (!newPoint) // magical slope do-er. 
                 {
                     modify /= 3; // change this to modify the slope of neighbor verticies. 
                     History[i] = vertices[i];
-                    vertices[i] += modify; 
+                    vertices[i] += modify * bumpLevel;
                     Changes[i] = vertices[i];
                 }
 
@@ -111,14 +120,6 @@ public class GenerateRocks : MonoBehaviour {
             }
             mesh.vertices = vertices;
             mesh.RecalculateBounds();
-        }
-
-    }
-
-    void BumpMaker(int itter)
-    {
-        for (int k = 0; k < itter; k++)
-        {
         }
     }
 

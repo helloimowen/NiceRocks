@@ -26,13 +26,19 @@ public class GenerateRocks : MonoBehaviour {
         History = new Vector3[vertices.Length];
         modify = Vector3.zero;
 
+        SphereCollider collider = transform.GetComponent<SphereCollider>();
+
         //Random RandomSize = new Random();
 
         float Width = (Random.value * 700) * 0.001F;
         float Height = (Random.value * 800) * 0.001F;
         float Length = (Random.value * 600) * 0.001F;
 
-        verticalBump = Mathf.CeilToInt((Random.value * 7));
+
+
+
+
+            verticalBump = Mathf.CeilToInt((Random.value * 7));
         leftBumpLevel = Mathf.CeilToInt((Random.value * 10) + 5);
         rightBumpLevel =  Mathf.CeilToInt((Random.value * 20) + 5);
         bumpLevel = Mathf.CeilToInt((Random.value * 4) + 1);
@@ -40,8 +46,23 @@ public class GenerateRocks : MonoBehaviour {
 
         transform.localScale += new Vector3(-Width, -Height, -Length);
 
-        BumpMaker(1);
+        if (Width >= Length && Width >= Height)
+        {
+            collider.radius = transform.localScale.x;
 
+        }
+        else if (Length >= Width && Length >= Height)
+        {
+            collider.radius = transform.localScale.z;
+        }
+        else
+        {
+            collider.radius = transform.localScale.y;
+        }
+
+
+
+        BumpMaker(1);
     }
 
     // Update is called once per frame

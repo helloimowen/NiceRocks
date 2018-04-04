@@ -44,7 +44,7 @@ public class PillGenerateClassic : MonoBehaviour
         float Height = (Random.value * 800) * 0.001F;
         float Length = (Random.value * 600) * 0.001F;
 
-        Height *= 2; 
+        //Height *= 2; /* THIS CAUSES THEM TO SPIN
 
 
 

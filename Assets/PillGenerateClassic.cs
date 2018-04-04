@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateRocks : MonoBehaviour {
+public class PillGenerateClassic : MonoBehaviour
+{
 
     Vector3 modify;
     Mesh mesh;
@@ -11,22 +12,23 @@ public class GenerateRocks : MonoBehaviour {
     Vector3[] History;
     bool newPoint = false;
 
-    int bumpLevel = 0; 
+    int bumpLevel = 0;
     int verticalBump = 0;
     int leftBumpLevel = 0;
     int rightBumpLevel = 0;
     //public GameObject rock;
 
 
-    int count; 
-	// Use this for initialization
-	void Start () {
+    int count;
+    // Use this for initialization
+    void Start()
+    {
         /*
         for (int i = 0; i < 10; i++)
         {
             Instantiate(rock);
         }
-        */ 
+        */
 
         mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
@@ -34,7 +36,7 @@ public class GenerateRocks : MonoBehaviour {
         History = new Vector3[vertices.Length];
         modify = Vector3.zero;
 
-        SphereCollider collider = transform.GetComponent<SphereCollider>();
+        CapsuleCollider collider = transform.GetComponent<CapsuleCollider>();
 
         //Random RandomSize = new Random();
 
@@ -42,13 +44,14 @@ public class GenerateRocks : MonoBehaviour {
         float Height = (Random.value * 800) * 0.001F;
         float Length = (Random.value * 600) * 0.001F;
 
+        Height *= 2; 
 
 
 
 
-            verticalBump = Mathf.CeilToInt((Random.value * 7));
+        verticalBump = Mathf.CeilToInt((Random.value * 7));
         leftBumpLevel = Mathf.CeilToInt((Random.value * 10) + 5);
-        rightBumpLevel =  Mathf.CeilToInt((Random.value * 20) + 5);
+        rightBumpLevel = Mathf.CeilToInt((Random.value * 20) + 5);
         bumpLevel = Mathf.CeilToInt((Random.value * 4) + 1);
 
 
@@ -74,10 +77,11 @@ public class GenerateRocks : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
 
-      
+
 
     }
 

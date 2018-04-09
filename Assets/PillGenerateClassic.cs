@@ -55,7 +55,7 @@ public class PillGenerateClassic : MonoBehaviour
         bumpLevel = Mathf.CeilToInt((Random.value * 4) + 1);
 
 
-        transform.localScale += new Vector3(-Width, -Height, -Length);
+        transform.localScale += new Vector3(Width, Height, Length);
 
         if (Width >= Length && Width >= Height)
         {

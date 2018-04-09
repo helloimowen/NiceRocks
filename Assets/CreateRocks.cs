@@ -19,9 +19,9 @@ public class CreateRocks : MonoBehaviour {
         if (count % 120 == 0)
         {
            
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
-                Instantiate(rock, new Vector3(320.0f, 1.0f, 150.0f), Quaternion.identity);
+                Instantiate(rock, new Vector3(320.0f + (i * 5), 5.0f + (count / 120 * 2), 150.0f + (i * 5)), Quaternion.identity);
             }
         }
     }

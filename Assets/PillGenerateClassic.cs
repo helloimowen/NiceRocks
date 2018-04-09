@@ -40,9 +40,9 @@ public class PillGenerateClassic : MonoBehaviour
 
         //Random RandomSize = new Random();
 
-        float Width = (Random.value * 700) * 0.001F;
-        float Height = (Random.value * 800) * 0.001F;
-        float Length = (Random.value * 600) * 0.001F;
+        float Width = (Random.value * 350) * 0.001F;
+        float Height = (Random.value * 400) * 0.001F;
+        float Length = (Random.value * 300) * 0.001F;
 
         //Height *= 2; /* THIS CAUSES THEM TO SPIN
 
@@ -55,7 +55,7 @@ public class PillGenerateClassic : MonoBehaviour
         bumpLevel = Mathf.CeilToInt((Random.value * 4) + 1);
 
 
-        transform.localScale += new Vector3(Width, Height, Length);
+        transform.localScale += new Vector3(-Width, -Height, -Length);
 
         if (Width >= Length && Width >= Height)
         {

@@ -10,15 +10,15 @@ public class PerlinRock : MonoBehaviour {
     void Start () {
         mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
-        SphereCollider collider = transform.GetComponent<SphereCollider>();
+        CapsuleCollider collider = transform.GetComponent<CapsuleCollider>();
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            int y = i / 64; // beautiful int rounding
-            int x = i % 64; // mesh with (seemingly) 64 verticies. 
+            float y = (i / 64) / 10; // beautiful int rounding
+            float x = (i % 64) / 10; // mesh with (seemingly) 64 verticies. 
 
-            float test = Mathf.PerlinNoise(x, y);
-            vertices[i] += Vector3.left * test;
+            Vector3 test = Vector3.left * (Mathf.PerlinNoise(x, y) / 10) * vertices[i].y;
+            vertices[i] += test;
         }
 
         mesh.vertices = vertices;

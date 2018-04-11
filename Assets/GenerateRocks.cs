@@ -14,12 +14,20 @@ public class GenerateRocks : MonoBehaviour {
     int bumpLevel = 0; 
     int verticalBump = 0;
     int leftBumpLevel = 0;
-    int rightBumpLevel = 0; 
+    int rightBumpLevel = 0;
+    //public GameObject rock;
 
 
     int count; 
 	// Use this for initialization
 	void Start () {
+        /*
+        for (int i = 0; i < 10; i++)
+        {
+            Instantiate(rock);
+        }
+        */ 
+
         mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
         Changes = mesh.vertices;

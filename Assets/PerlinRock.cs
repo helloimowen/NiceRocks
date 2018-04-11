@@ -51,7 +51,7 @@ public class PerlinRock : MonoBehaviour {
             // print(Mathf.PerlinNoise(x, y));
             History[i] = vertices[i];
             
-            vertices[i] += test;
+            vertices[i] -= test;
 
             
             Changes[i] = vertices[i];

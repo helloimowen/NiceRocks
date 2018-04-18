@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CreateRocks : MonoBehaviour {
     public GameObject rock;
+    public int RockLocation;
     // Use this for initialization
     Transform test; 
     int count = 0; 
@@ -16,12 +17,12 @@ public class CreateRocks : MonoBehaviour {
 
         count++;
 
-        if (count % 120 == 0)
+        if (count % 240 == 0)
         {
            
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
-                Instantiate(rock, new Vector3(320.0f + (i * 3), 5.0f + (count / 120 * 2), 150.0f + (i * 3)), Quaternion.identity);
+                Instantiate(rock, new Vector3(RockLocation + 320.0f + (i * 3), 5.0f + (count / 120 * 2), 150.0f + (i * 3)), Quaternion.identity);
             }
         }
     }

@@ -7,6 +7,9 @@ public class PerlinRock : MonoBehaviour {
     Vector3[] vertices;
     Vector3[] Changes;
     Vector3[] History;
+
+    float x;
+    float y;
     // Use this for initialization
     void Start () {
         mesh = GetComponent<MeshFilter>().mesh;
@@ -16,6 +19,8 @@ public class PerlinRock : MonoBehaviour {
         History = new Vector3[vertices.Length];
         bool newPoint = false;
         float randomModify = Random.value;
+        float randomModify2 = Random.value; 
+
 
         for (int i = 0; i < vertices.Length; i++)
         {
@@ -39,16 +44,20 @@ public class PerlinRock : MonoBehaviour {
             if (!changed)
             {
 
-                float y = ((float)i / 1000);
-                float x = ((float)i / 1000); // mesh with (seemingly) 64 verticies. 
+                y = ((float)i / 20);
+                x = ((float)i / 20); // mesh with (seemingly) 64 verticies. 
 
-                y += randomModify;
-                x += randomModify; 
+                y += randomModify / 10000;
+                x += randomModify / 10000;
+                y += randomModify2 / 10;
+                x += randomModify2 / 10;
 
                 test = Vector3.one * (Mathf.PerlinNoise(x, y)) * vertices[i].y;
+
+                
             }
 
-            // print(Mathf.PerlinNoise(x, y));
+
             History[i] = vertices[i];
             
             vertices[i] -= test;
@@ -61,6 +70,8 @@ public class PerlinRock : MonoBehaviour {
 
         mesh.vertices = vertices;
         mesh.RecalculateBounds();
+
+        // print(Mathf.PerlinNoise(this.x, this.y));
     }
 	
 	// Update is called once per frame
